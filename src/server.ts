@@ -17,3 +17,5 @@ app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);
   console.log(`Status check at http://localhost:${PORT}/status`);
 });
+
+export default app;
