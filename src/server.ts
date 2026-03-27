@@ -1,1 +1,16 @@
-console.log("hello world");
+import express from "express";
+import config from "./config";
+
+const PORT = config.PORT || 8080;
+const app = express();
+
+app.use(express.json());
+
+app.get("/status", (_, res) => {
+  res.status(200).json({ message: "OK", date: new Date().toISOString() });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port http://localhost:${PORT}`);
+  console.log(`Status check at http://localhost:${PORT}/status`);
+});
