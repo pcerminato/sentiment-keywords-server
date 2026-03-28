@@ -1,0 +1,5 @@
+$kind: http-request
+name: Status Checker
+url: http://localhost:8080/status
+method: GET
+order: 1774662391844
