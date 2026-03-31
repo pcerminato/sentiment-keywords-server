@@ -1,0 +1,17 @@
+$kind: http-request
+name: Create One Sentiment List
+url: http://localhost:8080/sentiment-list
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "name": "Description of an example",
+        "createdAt": "2026-03-28T01:47:24.732Z",
+        "lastUpdateAt": "2026-03-28T02:28:03.905Z",
+        "lists": {
+        "accepted": ["health", "nutrition", "meditation"],
+        "denied": ["diabeted", "obecity", "stress"]
+        }
+    }
+order: 2495800092667391
