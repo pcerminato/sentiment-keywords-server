@@ -1,0 +1,11 @@
+$kind: http-request
+url: http://localhost:8080/login
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "userName": "pcerminato@gmail.com",
+        "password": "{{vault:password}}"
+    }
+order: 4487515215157288

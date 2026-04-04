@@ -1,6 +1,12 @@
 import dotenv from "dotenv";
 
-const config: { PORT?: string; ATLAS_URI?: string } = {};
+const config: {
+  PORT?: string;
+  ATLAS_URI?: string;
+  JWT_SECRET?: string;
+  LOGIN_USER_NAME?: string;
+  LOGIN_PASSWORD?: string;
+} = {};
 
 dotenv.config({ processEnv: config });
 

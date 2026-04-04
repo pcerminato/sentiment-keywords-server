@@ -1,4 +1,5 @@
 $kind: http-request
+name: Find All Lists
 url: http://localhost:8080/sentiment-list
 method: GET
 order: 4461042384541038
