@@ -1,5 +1,27 @@
 import { NextFunction, Request, Response } from "express";
-import { insertOne } from "../db/crud";
+import { find, insertOne } from "../db/crud";
+
+export const findLists = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const results = await find();
+
+    res.status(201).json({
+      results: results,
+      count: results?.length,
+    });
+  } catch (error) {
+    res.status(500).json({
+      results: [],
+      count: 0,
+      message: "Error processing the query",
+    });
+    next(error);
+  }
+};
 
 export const insertOneList = async (
   req: Request,

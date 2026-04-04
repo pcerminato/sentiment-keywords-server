@@ -7,3 +7,9 @@ export interface Sentiment {
     denied: string[];
   };
 }
+
+export type Search = {
+  name: Sentiment["name"];
+  limit?: number;
+  skip?: number;
+};
