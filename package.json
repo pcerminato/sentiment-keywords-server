@@ -9,7 +9,11 @@
     "start": "node dist/server.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint"
+    "lint": "eslint",
+    "docker:build": "docker build --target development -t sentiment-keywords-server .",
+    "docker:run": "docker run -p 8080:8080 --name sentiment-keywords-server -d sentiment-keywords-server",
+    "docker:compose": "docker-compose up -d",
+    "docker:stop": "docker stop $(docker ps -q)"
   },
   "repository": {
     "type": "git",
