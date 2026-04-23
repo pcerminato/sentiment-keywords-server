@@ -6,6 +6,7 @@ const config: {
   JWT_SECRET?: string;
   LOGIN_USER_NAME?: string;
   LOGIN_PASSWORD?: string;
+  UI_URL?: string;
 } = {};
 
 dotenv.config({ processEnv: config });

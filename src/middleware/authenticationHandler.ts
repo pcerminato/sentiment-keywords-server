@@ -26,7 +26,6 @@ export function authenticationToken(
 
   try {
     const decodedUser = jwt.verify(accessToken, config.JWT_SECRET as string);
-
     // @ts-ignore
     req.user = decodedUser;
     next();

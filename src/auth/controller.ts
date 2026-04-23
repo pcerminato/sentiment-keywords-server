@@ -10,13 +10,13 @@ export function login(req: Request, res: Response, next: NextFunction) {
   try {
     // get the credentials from the request
     const { userName, password } = req.body;
-
     // validate the credential
+    /* TODO: use users DB */
     if (
       userName !== config.LOGIN_USER_NAME ||
       password !== config.LOGIN_PASSWORD
     ) {
-      res.status(401).json({
+      return res.status(401).json({
         message: "Access denied: incorrect credentials.",
       });
     }
@@ -27,10 +27,14 @@ export function login(req: Request, res: Response, next: NextFunction) {
         "24h", /* in a real production app, expiration should be shorter (ex. '1h') */
     });
 
-    // respond to the client success/error
+    res.cookie("jwt-credential", accessToken, {
+      httpOnly: true,
+      secure: false, // localhost
+      expires: new Date(Date.now() + ((60 * 1000) * 60) * 60 * 24), // expires in 24hs
+      sameSite: "lax",
+    });
     res.status(201).json({ userName, accessToken });
   } catch (error) {
     res.status(500).json({ "message": "Error on login" });
-    console.error(error);
   }
 }
