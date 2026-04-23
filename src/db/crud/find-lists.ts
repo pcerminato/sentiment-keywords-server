@@ -1,5 +1,6 @@
 import { runDbConnection } from "../connection";
 import { Search, Sentiment } from "../../types";
+import { ObjectId } from "mongodb";
 
 export async function find(search?: Search) {
   let db;
@@ -17,6 +18,25 @@ export async function find(search?: Search) {
       .limit(search?.limit || 20)
       .skip(search?.skip || 0)
       .toArray();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    db?.client.close();
+  }
+}
+
+export async function findOne(id: string) {
+  let db;
+
+  if (!id) {
+    new Error("Missing id param");
+  }
+  try {
+    db = await runDbConnection();
+
+    const collection = db?.collection<Sentiment>("sentiment");
+
+    return await collection?.findOne({ _id: new ObjectId(id) });
   } catch (error) {
     console.error(error);
   } finally {
