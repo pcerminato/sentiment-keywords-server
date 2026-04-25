@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { find, findOne, insertOne } from "../db/crud";
-import { count } from "node:console";
 
 export const findLists = async (
   req: Request,

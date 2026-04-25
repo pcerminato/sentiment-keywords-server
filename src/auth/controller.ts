@@ -33,7 +33,8 @@ export function login(req: Request, res: Response, next: NextFunction) {
       expires: new Date(Date.now() + ((60 * 1000) * 60) * 60 * 24), // expires in 24hs
       sameSite: "lax",
     });
-    res.status(201).json({ userName, accessToken });
+    res.status(201).json({ userName /* accessToken */
+    });
   } catch (error) {
     res.status(500).json({ "message": "Error on login" });
   }

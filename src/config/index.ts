@@ -7,6 +7,7 @@ const config: {
   LOGIN_USER_NAME?: string;
   LOGIN_PASSWORD?: string;
   UI_URL?: string;
+  GEMINI_API_KEY?: string;
 } = {};
 
 dotenv.config({ processEnv: config });

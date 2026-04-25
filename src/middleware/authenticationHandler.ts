@@ -8,23 +8,11 @@ export function authenticationToken(
   res: Response,
   next: NextFunction,
 ) {
-  const authHeader = req.headers["authorization"];
-
-  if (!authHeader) {
-    return res.status(401).json({ message: "Missing authorization header" });
-  }
-
-  // checks the "Bearer" and gets the token
-  const [bearer, accessToken] = authHeader.split(" ");
-
-  if (!bearer || bearer !== "Bearer" || !accessToken) {
-    // if authentication type is different from bearer, it is rejected.
-    return res.status(401).json({
-      message: "Wrong authorization type or wrong format",
-    });
-  }
-
   try {
+    const accessToken = req.cookies["jwt-credential"];
+    if (!accessToken) {
+      return res.status(401).json({ message: "Missing authorization token" });
+    }
     const decodedUser = jwt.verify(accessToken, config.JWT_SECRET as string);
     // @ts-ignore
     req.user = decodedUser;
